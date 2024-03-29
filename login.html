@@ -1,35 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Pengaduan Kepolisian</title>
+    <link rel="stylesheet" href="./css/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td align="center" valign="middle">
-                <div class="container" align="center"></div>
-                <div class="header">
-                    <h1>Pengaduan Kepolisian</h1>
-                    <img src="/assets/pengaduan.jpeg" alt="Pengaduan Kepolisian" width="300" height="300">
+    <nav>
+        <input type="checkbox" id="check"><label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <div class="logo-container">
+            <img src="./assets/gambar/logo.png" alt="Logo Pengaduan" width="60%" class="logo" />
+        </div>
+        <ul>
+            <li><a href="index.html">Layanan</a></li>
+            <li><a href="#">Info Satgas</a></li>
+            <li><a href="#">Info Data</a></li>
+            <li><a class="active" href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+        </ul>
+    </nav>
+    <section>
+        <div class="wrapper">
+            <form action="./dashboard/admin.html">
+                <h1>LOGIN</h1>
+                <div class="input-box">
+                    <input type="text" placeholder="Username" required>
+                    <i class='bx bxs-user'></i>
                 </div>
-                <h2>Login Pengaduan Kepolisian</h2>
-                <form action="index.html" method="post">
-                    <label for="username">Username:</label>
-                    <input type="text" id="username" name="username"><br>
-
-                    <label for="password">Password:</label>
-                    <input type="password" id="password" name="password"><br>
-
-                    <input type="submit" value="Login">
-                    <button onclick="location.href='register.html'">Register</button>
-                </form>
-                <p>Apakah belum daftar?<a href="register.html">register</a></p>
-            </td>
-        </tr>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="register-link">
+                    <p>Don't have an account? <a href="register.html">Register</a></p>
+                </div>
+            </form>
+        </div>
+        <br><br>
+    </section>
+    <br><br>
+    <footer class="footer">
+        <div class="row">
+            <p>Copyright &copy; 2024 Pengaduan Kepolisian</p>
+        </div>
+    </footer>
 </body>
 
 </html>
