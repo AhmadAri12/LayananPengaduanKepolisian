@@ -30,8 +30,108 @@
             <li><a href="register.html">Register</a></li>
         </ul>
     </nav>
-    <!-- END: Navbar -->
     <section>
+        <div class="container-slider">
+            <div class="img-slider">
+                <div class="slide active">
+                    <img src="assets/gambar/slider/1.png" alt="slider 1">
+                </div>
+                <div class="slide">
+                    <img src="assets/gambar/slider/2.png" alt="slider 2">
+                </div>
+                <div class="slide">
+                    <img src="assets/gambar/slider/3.png" alt="slider 3">
+                </div>
+                <div class="slide">
+                    <img src="assets/gambar/slider/4.png" alt="slider 4">
+                </div>
+                <div class="slide">
+                    <img src="assets/gambar/slider/5.png" alt="slider 5">
+                </div>
+                <div class="navigation">
+                    <div class="btn active"></div>
+                    <div class="btn"></div>
+                    <div class="btn"></div>
+                    <div class="btn"></div>
+                    <div class="btn"></div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Carousel -->
+        <!-- ... -->
+        <script>
+            // DOMContentLoaded event ensures that the script runs after the entire DOM has been loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                // Selecting elements from the DOM
+                const navbar = document.querySelector('nav');
+                const slider = document.querySelector('.container-slider');
+                const formTitle = document.querySelector('.form-title');
+                const formContainer = document.querySelector('.form-container');
+                const footer = document.querySelector('.footer');
+
+                // Applying styles to the selected elements
+                navbar.style.backgroundColor = '#333';
+                slider.style.margin = '20px auto';
+                formTitle.style.textAlign = 'center';
+                formContainer.style.padding = '20px';
+                footer.style.backgroundColor = '#333';
+                footer.style.color = '#fff';
+                footer.style.textAlign = 'center';
+            });
+            var slides = document.querySelectorAll('.slide');
+            var btns = document.querySelectorAll('.btn');
+            let currentSlide = 1;
+
+            // Javascript for image slider manual navigation
+            var manualNav = function(manual) {
+                slides.forEach((slide) => {
+                    slide.classList.remove('active');
+
+                    btns.forEach((btn) => {
+                        btn.classList.remove('active');
+                    });
+                });
+
+                slides[manual].classList.add('active');
+                btns[manual].classList.add('active');
+            }
+
+            btns.forEach((btn, i) => {
+                btn.addEventListener("click", () => {
+                    manualNav(i);
+                    currentSlide = i;
+                });
+            });
+
+            // Javascript for image slider autoplay navigation
+            var repeat = function(activeClass) {
+                let active = document.getElementsByClassName('active');
+                let i = 1;
+
+                var repeater = () => {
+                    setTimeout(function() {
+                        [...active].forEach((activeSlide) => {
+                            activeSlide.classList.remove('active');
+                        });
+
+                        slides[i].classList.add('active');
+                        btns[i].classList.add('active');
+                        i++;
+
+                        if (slides.length == i) {
+                            i = 0;
+                        }
+                        if (i >= slides.length) {
+                            return;
+                        }
+                        repeater();
+                    }, 10000);
+                }
+                repeater();
+            }
+            repeat();
+        </script>
+        <!-- END: Navbar -->
         <div class="col-md-8 col-md-offset-2 mg-b-40">
             <h2 class="form-title">Pengaduan Online</h2><br>
             <div class="form-container">
