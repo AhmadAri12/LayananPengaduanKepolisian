@@ -9,11 +9,9 @@ body {
     font-family: "Montserrat", sans-serif;
     display: flex;
     flex-direction: column;
-    /* Change to column to stack navbar, body and footer */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Change to 100vh to cover full viewport height */
     background-color: #abb8c3;
     background-size: cover;
     opacity: 1;
@@ -141,7 +139,6 @@ a:hover {
     border-radius: 10px;
     padding: 30px 40px;
     margin-top: 80px;
-    /* Add margin-top to place the login form below the navbar */
 }
 
 .wrapper h1 {
@@ -256,9 +253,6 @@ a:hover {
     }
 }
 
-
-/* Rest of your CSS code... */
-
 nav ul li a {
     color: white;
     font-size: 17px;
@@ -266,7 +260,6 @@ nav ul li a {
     border-radius: 3px;
     text-transform: uppercase;
     text-decoration: none;
-    /* Add this line */
 }
 
 nav ul li a:hover {
@@ -274,7 +267,6 @@ nav ul li a:hover {
     background-color: whitesmoke;
     transition: .5s;
     text-decoration: none;
-    /* Add this line */
 }
 
 a.active,
@@ -283,8 +275,4 @@ a:hover {
     background-color: #1b9bff;
     transition: .5s;
     text-decoration: none;
-    /* Add this line */
 }
-
-
-/* Rest of your CSS code... */

@@ -9,11 +9,9 @@ body {
     font-family: "Montserrat", sans-serif;
     display: flex;
     flex-direction: column;
-    /* Change to column to stack navbar, body and footer */
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Change to 100vh to cover full viewport height */
     background-color: #abb8c3;
     background-size: cover;
     opacity: 1;
