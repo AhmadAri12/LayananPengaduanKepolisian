@@ -58,79 +58,6 @@
             </div>
         </div>
         <!-- END: Carousel -->
-        <!-- ... -->
-        <script>
-            // DOMContentLoaded event ensures that the script runs after the entire DOM has been loaded
-            document.addEventListener('DOMContentLoaded', function() {
-                // Selecting elements from the DOM
-                const navbar = document.querySelector('nav');
-                const slider = document.querySelector('.container-slider');
-                const formTitle = document.querySelector('.form-title');
-                const formContainer = document.querySelector('.form-container');
-                const footer = document.querySelector('.footer');
-
-                // Applying styles to the selected elements
-                navbar.style.backgroundColor = '#333';
-                slider.style.margin = '20px auto';
-                formTitle.style.textAlign = 'center';
-                formContainer.style.padding = '20px';
-                footer.style.backgroundColor = '#333';
-                footer.style.color = '#fff';
-                footer.style.textAlign = 'center';
-            });
-            var slides = document.querySelectorAll('.slide');
-            var btns = document.querySelectorAll('.btn');
-            let currentSlide = 1;
-
-            // Javascript for image slider manual navigation
-            var manualNav = function(manual) {
-                slides.forEach((slide) => {
-                    slide.classList.remove('active');
-
-                    btns.forEach((btn) => {
-                        btn.classList.remove('active');
-                    });
-                });
-
-                slides[manual].classList.add('active');
-                btns[manual].classList.add('active');
-            }
-
-            btns.forEach((btn, i) => {
-                btn.addEventListener("click", () => {
-                    manualNav(i);
-                    currentSlide = i;
-                });
-            });
-
-            // Javascript for image slider autoplay navigation
-            var repeat = function(activeClass) {
-                let active = document.getElementsByClassName('active');
-                let i = 1;
-
-                var repeater = () => {
-                    setTimeout(function() {
-                        [...active].forEach((activeSlide) => {
-                            activeSlide.classList.remove('active');
-                        });
-
-                        slides[i].classList.add('active');
-                        btns[i].classList.add('active');
-                        i++;
-
-                        if (slides.length == i) {
-                            i = 0;
-                        }
-                        if (i >= slides.length) {
-                            return;
-                        }
-                        repeater();
-                    }, 10000);
-                }
-                repeater();
-            }
-            repeat();
-        </script>
         <!-- END: Navbar -->
         <div class="col-md-8 col-md-offset-2 mg-b-40">
             <h2 class="form-title">Pengaduan Online</h2><br>
@@ -177,7 +104,7 @@
                     <textarea id="description" name="description" required placeholder="Masukkan isi pengaduan Anda"></textarea><br>
                     <label for="file" id="files">Choose File:</label>
                     <input type="file" id="file" name="file" accept="image/*"><br>
-                    <input type="submit" value="Submit Pengaduan" class="submit-button">
+                    <button type="button" value="Submit Pengaduan" class="submit-button" onclick="submitForm()">Submit Pengaduan</button>
                 </form>
             </div>
         </div>
@@ -189,6 +116,100 @@
             <p>Copyright &copy; 2024 Pengaduan Kepolisian</p>
         </div>
     </footer>
+    <script>
+        // DOMContentLoaded event ensures that the script runs after the entire DOM has been loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selecting elements from the DOM
+            const navbar = document.querySelector('nav');
+            const slider = document.querySelector('.container-slider');
+            const formTitle = document.querySelector('.form-title');
+            const formContainer = document.querySelector('.form-container');
+            const footer = document.querySelector('.footer');
+
+            // Applying styles to the selected elements
+            navbar.style.backgroundColor = '#333';
+            slider.style.margin = '20px auto';
+            formTitle.style.textAlign = 'center';
+            formContainer.style.padding = '20px';
+            footer.style.backgroundColor = '#333';
+            footer.style.color = '#fff';
+            footer.style.textAlign = 'center';
+        });
+        var slides = document.querySelectorAll('.slide');
+        var btns = document.querySelectorAll('.btn');
+        let currentSlide = 1;
+
+        // Javascript for image slider manual navigation
+        var manualNav = function(manual) {
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+
+                btns.forEach((btn) => {
+                    btn.classList.remove('active');
+                });
+            });
+
+            slides[manual].classList.add('active');
+            btns[manual].classList.add('active');
+        }
+
+        btns.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                manualNav(i);
+                currentSlide = i;
+            });
+        });
+
+        // Javascript for image slider autoplay navigation
+        var repeat = function(activeClass) {
+            let active = document.getElementsByClassName('active');
+            let i = 1;
+
+            var repeater = () => {
+                setTimeout(function() {
+                    [...active].forEach((activeSlide) => {
+                        activeSlide.classList.remove('active');
+                    });
+
+                    slides[i].classList.add('active');
+                    btns[i].classList.add('active');
+                    i++;
+
+                    if (slides.length == i) {
+                        i = 0;
+                    }
+                    if (i >= slides.length) {
+                        return;
+                    }
+                    repeater();
+                }, 10000);
+            }
+            repeater();
+        }
+        repeat();
+
+        function submitForm() {
+            // Get form data
+            const fullname = document.getElementById('fullname').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const tKP = document.getElementById('tKP').value;
+            const kasus = document.getElementById('kasus').value;
+            const terlapor = document.getElementById('terlapor').value;
+            const description = document.getElementById('description').value;
+            const file = document.getElementById('file').value;
+
+            // Perform form validation
+            if (fullname === '' || address === '' || phone === '' || email === '' || tKP === '' || kasus === '' || terlapor === '' || description === '') {
+                alert('tolong isi semua data terlebih dahulu!');
+                return;
+            }
+            if (fullname !== '' && address !== '' && phone !== '' && email !== '' && tKP !== '' && kasus !== '' && terlapor !== '' && description !== '') {
+                alert('Pengaduan Anda telah berhasil dikirim!');
+            }
+        }
+    </script>
 </body>
 
 </html>

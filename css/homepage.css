@@ -343,6 +343,20 @@ nav ul li a:hover {
     color: #fff9f9;
 }
 
+.submit-button {
+    background-color: #1b9bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #1a89cc;
+}
+
 @media screen and (max-width: 768px) {
     .styled-form {
         width: 90%;

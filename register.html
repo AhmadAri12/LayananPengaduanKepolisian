@@ -26,64 +26,69 @@
             <li><a href="register.html">Register</a></li>
         </ul>
     </nav>
-    <section>
-        <div class="wrapper">
-            <form action="login.html">
-                <h1>REGISTER</h1>
-                <div class="input-box">
-                    <input type="text" placeholder="NIK" required>
-                    <i class='bx bxs-user'></i>
+    <main>
+        <div class="container-card">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Register</h3>
                 </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Nama Lengkap" required>
-                    <i class='bx bxs-user'></i>
+                <div class="card-body">
+                    <form action="login.html">
+                        <div class="">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div><br>
+                        <div class="">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div><br>
+                        <div class="">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div><br>
+                        <div class="">
+                            <label for="konfirmasiPassword" class="form-label">Konfirmasi Password</label>
+                            <input type="password" class="form-control" id="konfirmasiPassword" name="konfirmasiPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary" onclick="RegisterForm()">Register</button>
+                    </form>
                 </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Jenis Kelamin" required>
-                    <i class='bx bxs-user'></i>
+                <div class="card-footer text-muted">
+                    <p>Sudah punya akun? <a href="login.html">Login Sekarang</a></p>
                 </div>
-                <div class="input-box">
-                    <input type="date" placeholder="Tanggal Lahir" required>
-                    <i type="date" class='bx bxs-calendar'></i>
-                </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Nomor Telp" required>
-                    <i class='bx bxs-phone'></i>
-                </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Pekerjaan" required>
-                    <i class='bx bxs-briefcase'></i>
-                </div>
-                <div class="input-box">
-                    <input type="text" placeholder="Username" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="email" placeholder="Email" required>
-                    <i class='bx bxs-envelope'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder="Confirm Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <button type="submit" class="btn">Register</button>
-                <div class="login-link">
-                    <p>Already have an account? <a href="login.html">Login</a></p>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
-        <br><br>
-    </section>
+        </div>
+    </main>
     <br><br>
     <footer class="footer">
         <div class="row">
             <p>Copyright &copy; 2024 Pengaduan Kepolisian</p>
         </div>
     </footer>
+    <script>
+        function RegisterForm() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var konfirmasiPassword = document.getElementById("konfirmasiPassword").value;
+
+            if (username === "" || email === "" || password === "" || konfirmasiPassword === "") {
+                alert("Isi semua data terlebih dahulu.");
+                return false;
+            }
+
+            if (password !== konfirmasiPassword) {
+                alert("Password dan konfirmasi password harus sama.");
+                return false;
+            }
+
+            alert("Register berhasil! Silahkan login.");
+
+            return true;
+        }
+    </script>
 </body>
 
 </html>
