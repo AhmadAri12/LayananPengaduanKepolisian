@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Pengaduan Kepolisian</title>
-    <link rel="stylesheet" href="./css/register.css">
+    <link rel="stylesheet" href="css/register.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
@@ -16,14 +16,14 @@
             <i class="fas fa-bars"></i>
         </label>
         <div class="logo-container">
-            <img src="./assets/gambar/logo.png" alt="Logo Pengaduan" width="60%" class="logo" />
+            <img src="assets/gambar/logo.png" alt="Logo Pengaduan" width="60%" class="logo" />
         </div>
         <ul>
-            <li><a href="index.html">Layanan</a></li>
+            <li><a href="index.php">Layanan</a></li>
             <li><a href="#">Info Satgas</a></li>
             <li><a href="#">Info Data</a></li>
-            <li><a class="active" href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
+            <li><a class="active" href="login.php">Login</a></li>
+            <li><a href="register.php">Register</a></li>
         </ul>
     </nav>
     <main>
@@ -33,7 +33,7 @@
                     <h3>Register</h3>
                 </div>
                 <div class="card-body">
-                    <form action="login.html">
+                    <form action="login.php">
                         <div class="">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -54,7 +54,7 @@
                     </form>
                 </div>
                 <div class="card-footer text-muted">
-                    <p>Sudah punya akun? <a href="login.html">Login Sekarang</a></p>
+                    <p>Sudah punya akun? <a href="login.php">Login Sekarang</a></p>
                 </div>
                 </form>
             </div>

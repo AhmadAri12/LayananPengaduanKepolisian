@@ -16,25 +16,25 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="../admin.html">
+                <a href="../admin.php">
                     <i class='bx bx-grid-alt'></i>
                     <span class="links_name">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="../History/history.html">
+                <a href="../History/history.php">
                     <i class='bx bx-box'></i>
                     <span class="links_name">History Pengaduan</span>
                 </a>
             </li>
             <li>
-                <a href="categories.html" class="active">
+                <a href="categories.php" class="active">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Categories Pengaduan</span>
                 </a>
             </li>
             <li class="log_out">
-                <a href="../index.html" onclick="return confirm('Are you sure you want to log out?');">
+                <a href="../index.php" onclick="return confirm('Are you sure you want to log out?');">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
@@ -54,7 +54,7 @@
         <div class="home-content">
             <h3>Categories Pengaduan</h3>
             <button type="button" class="btn btn-tambah">
-		   <a href="categories-entry.html">Tambah Data</a>
+		   <a href="categories-entry.php">Tambah Data</a>
 		</button>
             <table class="table-data">
                 <thead>

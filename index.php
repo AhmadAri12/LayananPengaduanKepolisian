@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengaduan Kepolisian</title>
-    <link rel="stylesheet" href="./css/homepage.css">
+    <link rel="stylesheet" href="css/homepage.css">
     <!-- font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,14 +20,14 @@
             <i class="fas fa-bars"></i>
         </label>
         <div class="logo-container">
-            <img src="./assets/gambar/logo.png" alt="Logo Pengaduan" width="60%" class="logo" />
+            <img src="assets/gambar/logo.png" alt="Logo Pengaduan" width="60%" class="logo" />
         </div>
         <ul>
             <li><a href="#">Layanan</a></li>
             <li><a href="#">Info Satgas</a></li>
             <li><a href="#">Info Data</a></li>
-            <li><a class="active" href="login.html">Login</a></li>
-            <li><a href="register.html">Register</a></li>
+            <li><a class="active" href="login.php">Login</a></li>
+            <li><a href="register.php">Register</a></li>
         </ul>
     </nav>
     <section>
