@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<script>alert('Isi semua data terlebih dahulu.');</script>";
   } elseif ($username === $validUsername && $password === $validPassword) {
     $_SESSION['username'] = $username;
+    $_SESSION['password'] = $password;
     echo "<script>alert('Login berhasil!'); window.location.href = 'admin.php';</script>";
     exit();
   } else {
