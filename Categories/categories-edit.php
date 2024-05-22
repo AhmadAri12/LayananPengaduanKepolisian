@@ -1,15 +1,47 @@
-<?php 
-	session_start();
-	if($_SESSION['username'] == null) {
-		header('location:../login.php');
-	}
+<?php
+include '../koneksi.php';
+session_start();
+
+if(!isset($_SESSION['username'])) {
+    header('location:login.php');
+    exit;
+}
+
+if(!isset($_GET['id_kasus'])) {
+    echo "
+        <script>
+            alert('Tidak ada ID yang Terdeteksi');
+            window.location = 'categories.php';
+        </script>
+    ";
+    exit;
+}
+
+$id_kasus = $_GET['id_kasus'];
+
+$sql = "SELECT * FROM tb_jenis_pengaduan WHERE id_kasus = '$id_kasus'";
+$result = mysqli_query($koneksi, $sql);
+$data = mysqli_fetch_assoc($result);
+
+if(!$data) {
+    echo "
+        <script>
+            alert('ID Kasus tidak ditemukan');
+            window.location = 'categories.php';
+        </script>
+    ";
+    exit;
+}
+
+$nama_kasus = $data['nama_kasus'];
+$deskripsi = $data['deskripsi'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title> Admin Pengaduan Kepolisian | Categories</title>
+    <title>Admin Pengaduan Kepolisian | Categories</title>
     <link rel="stylesheet" href="../css/style_admin.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,26 +90,28 @@
             </div>
         </nav>
         <div class="home-content">
-            <h3>Input Categories Pengaduan</h3>
+            <h3>Edit Categories Pengaduan</h3>
             <div class="form-login">
-                <form action="categories-proses.php" method="post" enctype="multipart/form-data">
+                <form method="POST" action="categories-proses.php">
+                    <input type="hidden" name="id_kasus" value="<?= $data['id_kasus'] ?>">
                     <label for="nama_kategori">Kategori Pengaduan</label>
-                    <input class="input" type="text" name="nama_kasus" id="nama_kasus" placeholder="Nama Kategori" />
+                    <input class="input" type="text" name="nama_kasus" id="nama_kasus" placeholder="Nama Kategori" value="<?= $nama_kasus ?>"><br>
                     <label for="desc">Deskripsi</label>
-                    <input class="input" type="text" name="deskripsi" id="deskripsi" placeholder="Deskripsi" />
-                    <button type="submit" class="btn btn-simpan" name="simpan"> Simpan </button>
+                    <input class="input" type="long-text" name="deskripsi" id="deskripsi" placeholder="Deskripsi" value="<?= $deskripsi ?>">
+                    <button type="submit" class="btn btn-simpan" name="edit">Simpan</button>
                 </form>
             </div>
         </div>
+    </div>
 </body>
 <script>
-		let sidebar = document.querySelector(".sidebar");
-		let sidebarBtn = document.querySelector(".sidebarBtn");
-		sidebarBtn.onclick = function () {
-			sidebar.classList.toggle("active");
-			if (sidebar.classList.contains("active")) {
-				sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
-			} else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
-		};
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".sidebarBtn");
+    sidebarBtn.onclick = function () {
+        sidebar.classList.toggle("active");
+        if (sidebar.classList.contains("active")) {
+            sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+        } else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+    };
 </script>
 </html>

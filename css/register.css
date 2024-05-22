@@ -12,10 +12,6 @@ body {
     opacity: 1;
 }
 
-.logo-container {
-    position: absolute;
-}
-
 nav {
     display: flex;
     height: 80px;
@@ -184,7 +180,7 @@ main {
     display: block;
 }
 
-.form-control {
+.input {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;

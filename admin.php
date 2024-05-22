@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if($_SESSION['username'] == null) {
+		header('location:login.php');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +40,7 @@
                 </a>
             </li>
             <li class="log_out">
-                <a href="index.php" onclick="return confirm('Anda yakin ingin keluar?');">
+                <a href="logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
@@ -54,10 +60,68 @@
         </nav>
         <div class="home-content">
             <div class="overview-boxes">
-                <h2>Selamat Datang Administrator!</h2>
+                <h2 id="text">
+                    <?php 
+                        echo $_SESSION['username'];
+                    ?>
+                </h2 id="text">
+                <h3 id="date"></h3>
             </div>
         </div>
     </div>
 </body>
+<script>
+		let sidebar = document.querySelector(".sidebar");
+		let sidebarBtn = document.querySelector(".sidebarBtn");
+		sidebarBtn.onclick = function() {
+			sidebar.classList.toggle("active");
+			if (sidebar.classList.contains("active")) {
+				sidebarBtn.classList.replace("bx-menu", "bx-menu-alt-right");
+			} else sidebarBtn.classList.replace("bx-menu-alt-right", "bx-menu");
+		};
+
+		function myFunction() {
+			const months = ["Januari", "Februari", "Maret", "April", "Mei",
+				"Juni", "Juli", "Agustus", "September",
+				"Oktober", "November", "Desember"
+			];
+			const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis",
+				"Jumat", "Sabtu"
+			];
+			let date = new Date();
+			jam = date.getHours();
+			tanggal = date.getDate();
+			hari = days[date.getDay()];
+			bulan = months[date.getMonth()];
+			tahun = date.getFullYear();
+			let m = date.getMinutes();
+			let s = date.getSeconds();
+			m = checkTime(m);
+			s = checkTime(s);
+			document.getElementById("date").innerHTML = `${hari}, ${tanggal} ${bulan} ${tahun}, ${jam}:${m}:${s}`;
+			requestAnimationFrame(myFunction);
+		}
+
+		function checkTime(i) {
+			if (i < 10) {
+				i = "0" + i;
+			}
+			return i;
+		}
+		window.onload = function() {
+			let date = new Date();
+			jam = date.getHours();
+			if (jam >= 4 && jam <= 10) {
+				document.getElementById("text").insertAdjacentText("afterbegin", "Selamat Pagi,");
+			} else if (jam >= 11 && jam <= 14) {
+				document.getElementById("text").insertAdjacentText("afterbegin", "Selamat Siang,");
+			} else if (jam >= 15 && jam <= 18) {
+				document.getElementById("text").insertAdjacentText("afterbegin", "Selamat Sore,");
+			} else {
+				document.getElementById("text").insertAdjacentText("afterbegin", "Selamat Malam,");
+			}
+			myFunction();
+		};
+	</script>
 
 </html>

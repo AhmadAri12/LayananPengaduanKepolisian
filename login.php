@@ -1,23 +1,3 @@
-<?php
-session_start();
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-  $validUsername = "admin";
-  $validPassword = "admin1234";
-  if ($username === "" || $password === "") {
-    echo "<script>alert('Isi semua data terlebih dahulu.');</script>";
-  } elseif ($username === $validUsername && $password === $validPassword) {
-    $_SESSION['username'] = $username;
-    $_SESSION['password'] = $password;
-    echo "<script>alert('Login berhasil!'); window.location.href = 'admin.php';</script>";
-    exit();
-  } else {
-    echo "<script>alert('Username atau password salah.'); window.location.href = 'login.php';</script>";
-    exit();
-  }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,21 +30,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card-header">
                     <h3>Login Pengaduan</h3>
                 </div>
-                <div class="card-body">
-                    <form action="login.php" method="post">
-                        <div class="">
+                <div class="form-login">
+                <form action="login-proses.php" method="post">
+                    <div class="form-group">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username" required>
-                        </div><br>
-                        <div class="">
+                    </div>
+                    <br>
+                    <div class="form-group">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" class="form-control" id="password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </form>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="login">Login</button>
+                </form>
                 </div>
                 <div class="card-footer">
-                    <p>Belum punya akun? <a href="register.php">Daftar Sekarang</a></p>
+                    <p>Belum punya akun? <a href="register.php" class="link-register">Daftar Sekarang</a></p>
                 </div>
             </div>
         </div>

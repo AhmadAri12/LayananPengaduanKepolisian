@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if($_SESSION['username'] == null) {
+		header('location:../login.php');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -72,9 +78,9 @@
                     <tr>
                         <td>Naufal</td>
                         <td>08123456789</td>
-                        <td>Pencurian</td>
+                        <td>Dugaan Korupsi</td>
                         <td>Ferry</td>
-                        <td>Dompet dan handphone saya dicuri</td>
+                        <td>Ferry terduga dugaan korupsi pengurangan dana pembangunan jembatan</td>
                         <td>01/01/2022</td>
                         <td>
                             <button type="button" class="btn btn-edit btn-space">

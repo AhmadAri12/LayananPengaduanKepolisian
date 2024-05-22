@@ -1,3 +1,9 @@
+<?php 
+	session_start();
+	if($_SESSION['username'] == null) {
+		header('location:../login.php');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +40,7 @@
                 </a>
             </li>
             <li class="log_out">
-                <a href="../index.php" onclick="return confirm('Are you sure you want to log out?');">
+                <a href="../logout.php" onclick="return confirm('Are you sure you want to log out?');">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
@@ -65,18 +71,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Kriminalitas</td>
-                        <td>Meliputi pencurian, perampokan, penyerangan, dll</td>
+                    <?php
+                        include '../koneksi.php';
+                        $sql = "SELECT * FROM tb_jenis_pengaduan";
+                        $result = mysqli_query($koneksi, $sql);
+                        if (mysqli_num_rows($result) == 0) {
+                            echo "
+                                <tr>
+                                    <td colspan='5' align='center'>
+                                            Data Kosong
+                                            </td>
+                                </tr>
+                            ";
+                        }
+                        while ($data = mysqli_fetch_assoc($result)) {
+                            echo "
+                        <tr>
+                        <td>$data[nama_kasus]</td>
+                        <td>$data[deskripsi]</td>
                         <td>
-                            <button type="button" class="btn btn-edit">
-            <a href="#">Edit</a>
-          </button>
-                            <button type="button" class="btn btn-delete">
-            <a href="#">Hapus</a>
-          </button>
+                            <br>
+                            <a type='button' class='btn btn-edit btn-space' href=categories-edit.php?id_kasus=$data[id_kasus]>
+                                Edit
+                            </a>  | 
+                            <a type='button' class='btn btn-delete' href=categories-hapus.php?id_kasus=$data[id_kasus]>
+                                Hapus
+                            </a>
+                            <br><br>
                         </td>
-                    </tr>
+                        </tr>
+                    ";
+                        }
+                        ?>
                 </tbody>
             </table>
         </div>

@@ -1,20 +1,42 @@
-<?php 
-	session_start();
-	if($_SESSION['username'] == null) {
-		header('location:../login.php');
-	}
+<?php
+session_start();
+if(!isset($_SESSION['username'])) {
+    header('location:../login.php');
+    exit();
+}
+
+include '../koneksi.php';
+
+if(!isset($_GET['id_kasus'])) {
+    echo "
+      <script>
+        alert('Tidak ada ID yang Terdeteksi');
+        window.location = 'categories.php';
+      </script>
+    ";
+    exit();
+}
+
+$id_kasus = $_GET['id_kasus'];
+
+$sql = "SELECT * FROM tb_jenis_pengaduan WHERE id_kasus = ?";
+$stmt = $koneksi->prepare($sql);
+$stmt->bind_param("i", $id_kasus);
+$stmt->execute();
+$result = $stmt->get_result();
+$data = $result->fetch_assoc();
+$stmt->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title> Admin Pengaduan Kepolisian | History Entry</title>
+    <title> Admin Pengaduan Kepolisian | Categories</title>
     <link rel="stylesheet" href="../css/style_admin.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
     <div class="sidebar">
         <div class="logo-details">
@@ -28,19 +50,19 @@
                 </a>
             </li>
             <li>
-                <a href="history.php" class="active">
+                <a href="../History/history.php">
                     <i class='bx bx-box'></i>
                     <span class="links_name">History Pengaduan</span>
                 </a>
             </li>
             <li>
-                <a href="../Categories/categories.php">
+                <a href="categories.php" class="active">
                     <i class='bx bx-list-ul'></i>
                     <span class="links_name">Categories Pengaduan</span>
                 </a>
             </li>
             <li class="log_out">
-                <a href="../index.php">
+                <a href="../logout.php">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
@@ -58,25 +80,19 @@
             </div>
         </nav>
         <div class="home-content">
-            <h3>Input History Pengaduan</h3>
+            <h3>Hapus Categories Pengaduan</h3>
             <div class="form-login">
-                <form action="history.php">
-                    <label for="nama_pelapor">Nama Pelapor</label>
-                    <input class="input" type="text" name="nama_pelapor" id="nama_pelapor" placeholder="Nama Pelapor" />
-                    <label for="nomor_telepon">Nomor Telepon Pelapor</label>
-                    <input class="input" type="tel" name="nomor_telepon" id="nomor_telepon" placeholder="Nomor Telepon" />
-                    <label for="kasus">Kasus</label>
-                    <textarea class="input" name="kasus" id="kasus" placeholder="Deskripsi Kasus"></textarea>
-                    <label for="tersangka">Tersangka</label>
-                    <input class="input" type="text" name="tersangka" id="tersangka" placeholder="Nama Tersangka" style="margin-bottom: 20px" />
-                    <label for="isi_pengaduan">Isi Pengaduan</label>
-                    <textarea class="input" name="isi_pengaduan" id="isi_pengaduan" placeholder="Isi Pengaduan" style="margin-bottom: 20px"></textarea>
-                    <label for="tanggal_kejadian">Tanggal Kejadian</label>
-                    <input class="input" type="date" name="tanggal_kejadian" id="tanggal_kejadian" placeholder="Tanggal Kejadian" style="margin-bottom: 20px" />
-                    <button type="submit" class="btn btn-simpan" name="simpan"> Simpan </button>
+                <h4>Ingin Menghapus Data ?</h4>
+                <form action="categories-proses.php" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="id_kasus" value="<?= $data['id_kasus'] ?>">
+                    <button type="submit" class="btn" name="hapus" style="margin-top: 50px;">
+                        Yes
+                    </button>
+                    <button type="submit" class="btn" name="tidak">
+                        No
+                    </button>
                 </form>
             </div>
         </div>
 </body>
-
 </html>
