@@ -54,7 +54,7 @@
             </div>
             <div class="profile-details">
                 <i class='bx bxs-user'></i>
-                <span class="admin_name">Administrator</span>
+                <span class="admin_name"><?php echo $_SESSION['username']; ?></span>
             </div>
         </nav>
         <div class="home-content">
@@ -62,6 +62,9 @@
             <button type="button" class="btn btn-tambah">
 		   <a href="categories-entry.php">Tambah Data</a>
 		</button>
+        <button class="btn btn-tambah"  style="margin: 10px 0px 10px 0px;:" >
+         <a href="categories-cetak.php">Cetak Data</a>
+			</button>
             <table class="table-data">
                 <thead>
                     <tr>

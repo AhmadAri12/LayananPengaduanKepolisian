@@ -76,7 +76,7 @@ $stmt->close();
             </div>
             <div class="profile-details">
                 <i class='bx bxs-user'></i>
-                <span class="admin_name">Administrator</span>
+                <span class="admin_name"><?php echo $_SESSION['username']; ?></span>
             </div>
         </nav>
         <div class="home-content">

@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="log_out">
-                <a href="../index.php" onclick="return confirm('Are you sure you want to log out?');">
+                <a href="../logout.php" onclick="return confirm('Are you sure you want to log out?');">
                     <i class='bx bx-log-out'></i>
                     <span class="links_name">Log out</span>
                 </a>
@@ -54,7 +54,7 @@
             </div>
             <div class="profile-details">
                 <i class='bx bxs-user'></i>
-                <span class="admin_name">Administrator</span>
+                <span class="admin_name"><?php echo $_SESSION['username']; ?></span>
             </div>
         </nav>
         <div class="home-content">
@@ -62,6 +62,9 @@
             <button type="button" class="btn btn-tambah">
                <a href="history-entry.php">Tambah Data</a>
            </button>
+           <button class="btn btn-tambah"  style="margin: 10px 0px 10px 0px;:" >
+                <a href="history-cetak.php">Cetak Data</a>
+			</button>
             <table class="table-data">
                 <thead>
                     <tr>
@@ -75,22 +78,44 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Naufal</td>
-                        <td>08123456789</td>
-                        <td>Dugaan Korupsi</td>
-                        <td>Ferry</td>
-                        <td>Ferry terduga dugaan korupsi pengurangan dana pembangunan jembatan</td>
-                        <td>01/01/2022</td>
-                        <td>
-                            <button type="button" class="btn btn-edit btn-space">
-                                <a href="#">Edit</a>
-                            </button>
-                            <button type="button" class="btn btn-delete">
-                                <a href="#">Hapus</a>
-                            </button>
-                        </td>
-                    </tr>
+                <?php
+                    include '../koneksi.php';
+                    $sql = "SELECT tp.*, tj.nama_kasus 
+                            FROM tb_pengaduan tp
+                            JOIN tb_jenis_pengaduan tj ON tp.id_kasus = tj.id_kasus";
+                    $result = mysqli_query($koneksi, $sql);
+
+                    if (mysqli_num_rows($result) == 0) {
+                        echo "
+                            <tr>
+                                <td colspan='7' align='center'>
+                                    Data Kosong
+                                </td>
+                            </tr>
+                        ";
+                    } else {
+                        while ($data = mysqli_fetch_assoc($result)) {
+                            echo "
+                            <tr>
+                                <td>{$data['nama_pelapor']}</td>
+                                <td>{$data['telp_pelapor']}</td>
+                                <td>{$data['nama_kasus']}</td>
+                                <td>{$data['tersangka']}</td>
+                                <td>{$data['isi_pengaduan']}</td>
+                                <td>{$data['tgl_kejadian']}</td>
+                                <td>
+                                    <button type='button' class='btn btn-edit btn-space'>
+                                        <a href='history-edit.php?id_pengaduan={$data['id_pengaduan']}'>Edit</a>
+                                    </button>
+                                    <button type='button' class='btn btn-delete'>
+                                        <a href='history-hapus.php?id_pengaduan={$data['id_pengaduan']}'>Hapus</a>
+                                    </button>
+                                </td>
+                            </tr>
+                            ";
+                        }
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

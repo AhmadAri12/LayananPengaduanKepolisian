@@ -58,7 +58,7 @@
             </div>
         </nav>
         <div class="home-content">
-            <h3>Input Categories Pengaduan</h3>
+            <h3>Tambah Categories Pengaduan</h3>
             <div class="form-login">
                 <form action="categories-proses.php" method="post" enctype="multipart/form-data">
                     <label for="nama_kategori">Kategori Pengaduan</label>
